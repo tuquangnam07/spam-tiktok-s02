@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Quản Trị Viên - 𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</title>
+    <link rel="stylesheet" href="../css/lib/toastify.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css"> <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/auth-guard.js" type="module"></script>
+</head>
+<body>
+    <header class="main-header">
+        <nav id="admin-nav">
+            <a href="/trangchu/admin.html" class="active">Quản Trị Viên</a>
+        </nav>
+        </header>
+
+    <main class="container">
+        <h1>Bảng điều khiển Quản Trị Viên</h1>
+
+        <nav class="admin-tabs">
+            <button class="tab-link active" data-tab="tab-users">Quản lý CTV</button>
+            <button class="tab-link" data-tab="tab-salary">Quản lý Lương</button>
+            <button class="tab-link" data-tab="tab-stats">Thống kê</button>
+        </nav>
+
+        <div id="tab-users" class="tab-content active">
+            <h2>Quản lý Cộng Tác Viên</h2>
+            <div class="admin-toolbar">
+                <button id="add-user-btn" class="btn btn-primary">Thêm Thành viên</button>
+                <button id="export-users-btn" class="btn btn-secondary">Xuất Excel</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Họ Tên</th>
+                            <th>Email</th>
+                            <th>ID Tele</th>
+                            <th>Vai trò</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        </tbody>
+                </table>
+            </div>
+            <div class="pagination-controls">
+                <button id="users-prev-btn" class="btn btn-secondary">&lt; Trước</button>
+                <button id="users-next-btn" class="btn btn-secondary">Sau &gt;</button>
+            </div>
+        </div>
+
+        <div id="tab-salary" class="tab-content hidden">
+            <h2>Quản lý Lương</h2>
+            
+            <section class="admin-section">
+                <h3>Thêm lương thủ công</h3>
+                <form id="manual-salary-form" class="form-grid">
+                    <div class="form-group">
+                        <label for="salary-user-select">Chọn CTV</label>
+                        <select id="salary-user-select" required>
+                            <option value="">Đang tải danh sách...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-amount">Số tiền (VNĐ)</label>
+                        <input type="number" id="salary-amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-date">Ngày</label>
+                        <input type="date" id="salary-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-status">Trạng thái</label>
+                        <select id="salary-status" required>
+                            <option value="chờ xử lý">Chờ xử lý</option>
+                            <option value="đã thanh toán">Đã thanh toán</option>
+                            <option value="đã hủy bỏ">Đã hủy bỏ</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="manual-salary-btn" class="btn btn-primary form-grid-span">
+                        <span class="btn-text">Thêm Lương</span>
+                        <span class="spinner hidden"></span>
+                    </button>
+                </form>
+            </section>
+            
+            <section class="admin-section">
+                <h3>Tải lên hàng loạt (Excel)</h3>
+                <p>File Excel phải có cột 'Row Labels' (chứa ID Tele) và 'Sum of LƯƠNG' (chứa số lương dạng 55,2).</p>
+                <div class="form-group">
+                    <label for="excel-file-input">Chọn file .xlsx hoặc .xls</label>
+                    <input type="file" id="excel-file-input" accept=".xls, .xlsx">
+                </div>
+                <button id="process-excel-btn" class="btn">
+                    <span class="btn-text">Xử lý File</span>
+                    <span class="spinner hidden"></span>
+                </button>
+                <div id="excel-summary" class="hidden"></div>
+            </section>
+        </div>
+
+        <div id="tab-stats" class="tab-content hidden">
+            <h2>Thống kê</h2>
+            <p>Các biểu đồ và số liệu thống kê sẽ được hiển thị ở đây.</p>
+            </div>
+    </main>
+
+    <div id="admin-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-admin-modal">&times;</span>
+            <h2 id="admin-modal-title">Thêm/Sửa CTV</h2>
+            <form id="admin-user-form">
+                <input type="hidden" id="admin-user-id"> <h3>Tài khoản</h3>
+                <div class="form-group">
+                    <label for="admin-user-email">Email</label>
+                    <input type="email" id="admin-user-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-user-password">Mật khẩu (Để trống nếu không đổi)</label>
+                    <input type="password" id="admin-user-password">
+                </div>
+                <div class="form-group">
+                    <label for="admin-user-role">Vai trò</label>
+                    <select id="admin-user-role" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <h3>Hồ sơ</h3>
+                <div class="form-group">
+                    <label for="admin-profile-hoTen">Họ và Tên</label>
+                    <input type="text" id="admin-profile-hoTen" required>
+                </div>
+                <button type="submit" id="admin-user-submit-btn" class="btn">
+                    <span class="btn-text">Lưu</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js" type="module"></script>
+    
+    <script src="../js/lib/toastify.js"></script>
+    <script src="../js/lib/sheet.js"></script> <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script> <script src="../js/admin.js" type="module"></script> <script src="../js/admin-users.js" type="module"></script> <script src="../js/admin-salary.js" type="module"></script> </body>
+</html>
