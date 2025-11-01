@@ -1,0 +1,360 @@
+/* Biến toàn cục */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-hover: #5a6268;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #212529;
+    --border-color: #dee2e6;
+    --header-height: 70px;
+    --max-width: 1200px;
+}
+
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height); /* Để nội dung không bị header che */
+}
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+img {
+    max-width: 100%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+th, td {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+th {
+    background-color: var(--light-color);
+}
+.hidden {
+    display: none !important;
+}
+
+/* Container chính */
+.container {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+.static-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Header & Navbar */
+.main-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: var(--header-height);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.main-header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 2rem;
+}
+.main-header nav {
+    display: flex;
+    gap: 1rem;
+}
+.main-header nav a {
+    padding: 0.5rem 0.8rem;
+    font-weight: 500;
+    color: #555;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.main-header nav a:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
+.main-header nav a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+#admin-nav {
+    margin-left: 1rem;
+    border-left: 1px solid var(--border-color);
+    padding-left: 1.5rem;
+}
+#admin-nav a.active {
+    background-color: var(--danger-color);
+}
+
+/* Profile Area */
+.profile-area {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.notification-bell {
+    position: relative;
+    cursor: pointer;
+    color: #555;
+}
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--danger-color);
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+.profile-dropdown {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.profile-dropdown .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-dropdown #profile-name {
+    font-weight: 500;
+}
+.profile-menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 160px;
+    overflow: hidden;
+    z-index: 1001;
+}
+.profile-menu a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--text-color);
+}
+.profile-menu a:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
+
+/* Nút bấm (Button) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 44px;
+}
+.btn-primary { background-color: var(--primary-color); color: #fff; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-secondary { background-color: var(--secondary-color); color: #fff; }
+.btn-secondary:hover { background-color: var(--secondary-hover); }
+.btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* Dashboard Widgets */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.widget {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.widget h3 {
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 1.1rem;
+}
+.widget p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.widget.widget-full {
+    grid-column: 1 / -1; /* Chiếm toàn bộ hàng */
+}
+.widget-full h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.widget-full p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+.close-button:hover { color: #000; }
+
+/* Form (trong Modal & Admin) */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.form-group input:disabled {
+    background: #eee;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.form-grid-span {
+    grid-column: 1 / -1;
+}
+
+/* Bảng lương & Trạng thái */
+.table-container {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.status-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+.status-pending { background-color: var(--warning-color); color: #333; }
+.status-paid { background-color: var(--success-color); }
+.status-cancelled { background-color: var(--danger-color); }
+
+/* Phân trang */
+.pagination-controls {
+    text-align: center;
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Loader */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* Spinner cho nút */
+button .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+}
