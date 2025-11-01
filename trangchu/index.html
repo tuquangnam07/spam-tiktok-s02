@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng điều khiển - 𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</title>
+    
+    <link rel="stylesheet" href="../css/lib/toastify.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <script src="../js/auth-guard.js" type="module"></script>
+</head>
+<body>
+    
+    <div id="loader-overlay" class="loader-overlay hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo">𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</div>
+        <nav id="main-nav">
+            <a href="/trangchu/" class="active">Trang Chủ</a>
+            <a href="/trangchu/noiquy.html">Nội Quy</a>
+            <a href="/trangchu/bangluong.html">Bảng Lương</a>
+            <a href="/trangchu/huongdan.html">Hướng Dẫn</a>
+        </nav>
+        <nav id="admin-nav" class="hidden">
+            <a href="/trangchu/admin.html">Quản Trị Viên</a>
+        </nav>
+        <div class="profile-area">
+            <div id="notification-bell" class="notification-bell">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 00-5.714 0" />
+                </svg>
+                <span id="notification-dot" class="notification-dot hidden"></span>
+            </div>
+            <div id="profile-dropdown" class="profile-dropdown">
+                <img id="profile-avatar" src="https://via.placeholder.com/40" alt="Avatar" class="avatar">
+                <span id="profile-name">Loading...</span>
+                <div id="profile-menu" class="profile-menu hidden">
+                    <a href="#" id="profile-modal-trigger">Hồ sơ</a>
+                    <a href="#" id="logout-button">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 id="welcome-message">Chào mừng, [Tên User]!</h1>
+        
+        <section id="user-dashboard" class="dashboard-grid hidden">
+            <div class="widget">
+                <h3>Lương hôm nay</h3>
+                <p id="today-salary">0 VNĐ</p>
+            </div>
+            <div class="widget">
+                <h3>Tổng lương tháng này</h3>
+                <p id="month-salary">0 VNĐ</p>
+            </div>
+            <div class="widget widget-full">
+                <h3>Thông báo mới nhất</h3>
+                <h4 id="latest-announcement-title">Không có thông báo</h4>
+                <p id="latest-announcement-content">...</p>
+            </div>
+        </section>
+
+        <section id="admin-dashboard" class="dashboard-grid hidden">
+            <div class="widget">
+                <h3>Tổng số CTV</h3>
+                <p id="admin-total-users">...</p>
+            </div>
+            <div class="widget">
+                <h3>Tổng lương đã duyệt</h3>
+                <p id="admin-total-paid">...</p>
+            </div>
+            <div class="widget">
+                <h3>Lương chờ xử lý</h3>
+                <p id="admin-total-pending">...</p>
+            </div>
+        </section>
+    </main>
+    
+    <div id="profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-profile-modal">&times;</span>
+            <h2>Thông tin Hồ sơ</h2>
+            <form id="profile-update-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="profile-email" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="profile-hoTen">Họ và Tên</label>
+                    <input type="text" id="profile-hoTen" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-sdt">Số điện thoại</label>
+                    <input type="tel" id="profile-sdt">
+                </div>
+                <div class="form-group">
+                    <label for="profile-idTele">ID Telegram</label>
+                    <input type="text" id="profile-idTele" placeholder="@username" required>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="profile-stk">Số tài khoản</label>
+                    <input type="text" id="profile-stk">
+                </div>
+                <div class="form-group">
+                    <label for="profile-tenChuTK">Tên chủ tài khoản (IN HOA)</label>
+                    <input type="text" id="profile-tenChuTK">
+                </div>
+                <div class="form-group">
+                    <label for="profile-nganHang">Ngân hàng</label>
+                    <input type="text" id="profile-nganHang">
+                </div>
+                <button type="submit" id="profile-update-button" class="btn">
+                    <span class="btn-text">Cập nhật</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js" type="module"></script>
+    
+    <script src="../js/lib/toastify.js"></script>
+    
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script> <script src="../js/dashboard.js" type="module"></script> </body>
+</html>
