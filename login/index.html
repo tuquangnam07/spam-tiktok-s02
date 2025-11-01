@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - 𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</title>
+    <link rel="stylesheet" href="../css/lib/toastify.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form" class="login-form">
+            <h2>𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</h2>
+            <p>Đăng nhập vào hệ thống</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" id="login-button">
+                <span class="btn-text">Đăng nhập</span>
+                <span class="spinner hidden"></span>
+            </button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js" type="module"></script>
+    
+    <script src="../js/lib/toastify.js"></script>
+    
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="login.js" type="module"></script>
+</body>
+</html>
