@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Bảng Lương - 𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</title>
+    <link rel="stylesheet" href="../css/lib/toastify.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/auth-guard.js" type="module"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">𝑺𝑷𝑨𝑴 𝑻𝑰𝑲 𝑻𑶜𝑲 𝑺𝟎𝟐</div>
+        <nav id="main-nav">
+            <a href="/trangchu/">Trang Chủ</a>
+            <a href="/trangchu/noiquy.html">Nội Quy</a>
+            <a href="/trangchu/bangluong.html" class="active">Bảng Lương</a>
+            <a href="/trangchu/huongdan.html">Hướng Dẫn</a>
+        </nav>
+        </header>
+
+    <main class="container">
+        <h1>Lịch sử Lương</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ngày</th>
+                        <th>Số tiền (VNĐ)</th>
+                        <th>Trạng thái</th>
+                        <th>Phương thức</th>
+                    </tr>
+                </thead>
+                <tbody id="salary-table-body">
+                    <tr>
+                        <td colspan="4" style="text-align: center;">Đang tải dữ liệu...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination-controls">
+            <button id="load-more-btn" class="btn btn-secondary">Tải thêm</button>
+        </div>
+    </main>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js" type="module"></script>
+    <script src="../js/lib/toastify.js"></script>
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script> <script src="../js/user-salary.js" type="module"></script> </body>
+</html>
